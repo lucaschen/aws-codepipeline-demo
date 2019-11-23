@@ -7,28 +7,30 @@ test("Counter component works properly", () => {
   const { getByTestId, getByText } = render(<Counter />);
 
   const counterValueEl = getByTestId("counter-value");
-  const decrementButtonEl = getByText("-1", { selector: "button" });
-  const incrementButtonEl = getByText("+1", { selector: "button" });
+  const minusTwoButtonEl = getByText("-2", { selector: "button" });
+  const minusOneButtonEl = getByText("-1", { selector: "button" });
+  const plusOneButtonEl = getByText("+1", { selector: "button" });
+  const plusTwoButtonEl = getByText("+2", { selector: "button" });
 
   expect(counterValueEl).toHaveTextContent("0");
 
-  fireEvent.click(decrementButtonEl);
+  fireEvent.click(minusOneButtonEl);
 
   expect(counterValueEl).toHaveTextContent("-1");
 
-  fireEvent.click(decrementButtonEl);
+  fireEvent.click(minusTwoButtonEl);
+
+  expect(counterValueEl).toHaveTextContent("-3");
+
+  fireEvent.click(plusOneButtonEl);
 
   expect(counterValueEl).toHaveTextContent("-2");
 
-  fireEvent.click(incrementButtonEl);
-
-  expect(counterValueEl).toHaveTextContent("-1");
-
-  fireEvent.click(incrementButtonEl);
+  fireEvent.click(plusTwoButtonEl);
 
   expect(counterValueEl).toHaveTextContent("0");
 
-  fireEvent.click(incrementButtonEl);
+  fireEvent.click(plusOneButtonEl);
 
   expect(counterValueEl).toHaveTextContent("1");
 });
